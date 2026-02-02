@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        h1 { color: #333; }
+        p { color: #666; }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #764ba2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Sample App</h1>
+        <p>Frontend and Backend Integration</p>
+        <button onclick="fetchAPI()">Call API</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        function fetchAPI() {
+            fetch('http://localhost:8000/api/health')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').textContent = 'Backend Status: ' + data.status;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
